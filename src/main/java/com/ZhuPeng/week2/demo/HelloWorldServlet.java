@@ -13,7 +13,9 @@ public class HelloWorldServlet extends HttpServlet {
         //we need to write Hello in response
         //get writer-java.io
         PrintWriter writer = response.getWriter();
-        writer.println("Hello Client!!!");//that all
+        writer.println("Name:Zhu Peng");
+        writer.println("ID:2020211001001217");
+        writer.println("Date and Time:Tuesday,March 8,2022 Beijing time 16:39");//that all
         //next we need to tell about this servlet to tomcat-how?-web.xml
 
     }
