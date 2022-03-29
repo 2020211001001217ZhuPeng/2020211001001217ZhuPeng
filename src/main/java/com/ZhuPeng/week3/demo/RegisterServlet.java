@@ -75,10 +75,15 @@ public class RegisterServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String sql2 = "select * from usertable";
+        String sql2 = "select * from usertable where id=?";
         PreparedStatement r2 = null;
         try {
             r2 = con.prepareStatement(sql2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            r2.setString(1,id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
