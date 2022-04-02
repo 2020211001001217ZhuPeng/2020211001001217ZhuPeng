@@ -1,7 +1,5 @@
 package com.ZhuPeng.week3.demo;
 
-import com.sun.org.apache.bcel.internal.generic.GETFIELD;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -9,13 +7,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
-@WebServlet("/register")
+@WebServlet(urlPatterns = {"/register"},loadOnStartup = 1)
 public class RegisterServlet extends HttpServlet {
     Connection con=null;
     @Override
     public void init() throws ServletException {
         super.init();
-        ServletContext context=getServletContext();
+/*        ServletContext context=getServletContext();
         String driver= context.getInitParameter("driver");
         String url= context.getInitParameter("url");
         String username= context.getInitParameter("username");
@@ -26,11 +24,13 @@ public class RegisterServlet extends HttpServlet {
             System.out.println("Connection in RegisterServlet-->"+con);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        }
+        }*/
+        con= (Connection) getServletContext().getAttribute("con");
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request,response);
 
 
     }
@@ -75,25 +75,55 @@ public class RegisterServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String sql2 = "select * from usertable where id=?";
-        PreparedStatement r2 = null;
-        try {
+        //String sql2 = "select * from usertable";
+        //PreparedStatement r2 = null;
+/*        try {
             r2 = con.prepareStatement(sql2);
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        try {
+        }*/
+/*        try {
             r2.setString(1,id);
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        ResultSet rs = null;
-        try {
+        }*/
+        //ResultSet rs = null;
+/*        try {
             rs = r2.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
+        //PrintWriter writer=response.getWriter();
+        //here is html code--move these html code in a jsp page-userlist.jsp
+        //start--
+/*        writer.println("<html><head><title></title></head><body><table border=1><tr>");
+        writer.println("<td>id</td><td>username</td><td>password</td><td>email</td><td>gender</td><td>birthday</td></tr>");
         while (true) {
+            try {
+                if (!rs.next()) break;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            writer.println("<tr>");
+            try {
+                writer.println("<td>"+rs.getString("id")+"</td>");
+                writer.println("<td>"+rs.getString("username")+"</td>");
+                writer.println("<td>"+rs.getString("password")+"</td>");
+                writer.println("<td>"+rs.getString("email")+"</td>");
+                writer.println("<td>"+rs.getString("gender")+"</td>");
+                writer.println("<td>"+rs.getString("birthday")+"</td>");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            writer.println("</tr>");
+
+        }
+        writer.println("</table></body></html>");*/
+        //--end
+        //request.setAttribute("rsname",rs);
+        //request.getRequestDispatcher("userList.jsp").forward(request,response);
+        response.sendRedirect("login.jsp");
+/*        while (true) {
             try {
                 if (!rs.next()) break;
             } catch (SQLException e) {
@@ -119,7 +149,7 @@ public class RegisterServlet extends HttpServlet {
             writer.println(id1 +" "+ username1 +" "+ password1 +" " + email1 +" "+ gender1 +" "+ birthDate1);
 
 
-        }
+        }*/
 
     }
 }

@@ -16,7 +16,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
-        ServletContext context=getServletContext();
+/*        ServletContext context=getServletContext();
         String driver= context.getInitParameter("driver");
         String url= context.getInitParameter("url");
         String username= context.getInitParameter("username");
@@ -27,10 +27,12 @@ public class LoginServlet extends HttpServlet {
             System.out.println("Connection in RegisterServlet-->"+con);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        }
+        }*/
+        con= (Connection) getServletContext().getAttribute("con");
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request,response);
 
     }
 
@@ -58,13 +60,23 @@ public class LoginServlet extends HttpServlet {
             e.printStackTrace();
         }
         try {
-            PrintWriter writer=response.getWriter();
+            //PrintWriter writer=response.getWriter();
             if (rs.next()){
-                writer.println("Login Success!!!");
-                writer.println("Welcome,"+username);
+                //writer.println("Login Success!!!");
+                //writer.println("Welcome,"+username);
+                request.setAttribute("id",rs.getInt("id"));
+                request.setAttribute("username",rs.getString("username"));
+                request.setAttribute("password",rs.getString("password"));
+                request.setAttribute("email",rs.getString("email"));
+                request.setAttribute("gender",rs.getString("gender"));
+                request.setAttribute("birthday",rs.getString("birthday"));
+
+                request.getRequestDispatcher("userInfo.jsp").forward(request,response);
 
             }else{
-                writer.println("Username of Password Error!!!");
+                //writer.println("Username or Password Error!!!");
+                request.setAttribute("message","Username or Password Error!!!");
+                request.getRequestDispatcher("login.jsp").forward(request,response);
             }
         } catch (SQLException e) {
             e.printStackTrace();
