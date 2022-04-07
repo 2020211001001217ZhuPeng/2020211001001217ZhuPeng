@@ -1,5 +1,7 @@
 package com.ZhuPeng.week5;
 
+import com.ZhuPeng.dao.UserDao;
+import com.ZhuPeng.model.User;
 import com.sun.org.apache.bcel.internal.generic.Select;
 
 import javax.servlet.*;
@@ -32,7 +34,7 @@ public class LoginServlet extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+        request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request,response);
 
     }
 
@@ -40,26 +42,28 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        UserDao userDao=new UserDao();
+        try {
+            User user=userDao.findByUsernamePassword(con,username,password);
+            if(user!=null){
+                request.setAttribute("user",user);
+                request.getRequestDispatcher("WEB-INF/views/userInfo.jsp").forward(request,response);
+            }else {
+                request.setAttribute("message","Username or Password Error!!!");
+                request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request,response);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        /*
         String sql = "select * from usertable where username=? and password=?";
-        PreparedStatement r = null;
+        PreparedStatement st;
+        ResultSet rs;
         try {
-            r = con.prepareStatement(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
-            r.setString(1, username);
-            r.setString(2, password);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        ResultSet rs = null;
-        try {
-            rs = r.executeQuery();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
+            st = con.prepareStatement(sql);
+            st.setString(1, username);
+            st.setString(2, password);
+            rs = st.executeQuery();
             //PrintWriter writer=response.getWriter();
             if (rs.next()){
                 //writer.println("Login Success!!!");
@@ -78,10 +82,9 @@ public class LoginServlet extends HttpServlet {
                 request.setAttribute("message","Username or Password Error!!!");
                 request.getRequestDispatcher("login.jsp").forward(request,response);
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-
-
+        }*/
     }
 }
