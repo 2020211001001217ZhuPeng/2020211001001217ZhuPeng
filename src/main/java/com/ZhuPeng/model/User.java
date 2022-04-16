@@ -8,7 +8,7 @@ public class User {
     private String password;
     private String email;
     private String gender;
-    private Date birthday;
+    private String birthday;
 
     public User(){}
 
@@ -18,7 +18,7 @@ public class User {
         this.password=password;
         this.email=email;
         this.gender=gender;
-        this.birthday=birthday;
+        this.birthday= String.valueOf(birthday);
     }
 
     public int getId() {
@@ -61,11 +61,11 @@ public class User {
         this.gender = gender;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 

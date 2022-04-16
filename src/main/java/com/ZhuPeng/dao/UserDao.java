@@ -19,7 +19,7 @@ public class UserDao implements IUserDao{
         st.setString(3, user.getPassword());
         st.setString(4, user.getEmail());
         st.setString(5, user.getGender());
-        st.setDate(6, (java.sql.Date) user.getBirthday());
+        st.setString(6,user.getBirthday());
         st.executeUpdate();
         return true;
     }
@@ -35,12 +35,16 @@ public class UserDao implements IUserDao{
 
     @Override
     public int updateUser(Connection con, User user) throws SQLException {
-        String sql="update usertable set password=? where id=?";
+        String sql="update usertable set username=?,password=?,email=?,gender=?,birthday=? where id=?";
         PreparedStatement st = con.prepareStatement(sql);
-        st.setString(1,user.getPassword());
-        st.setInt(2,user.getId());
+        st.setString(1,user.getUsername());
+        st.setString(2,user.getPassword());
+        st.setString(3, user.getEmail());
+        st.setString(4, user.getGender());
+        st.setString(5,user.getBirthday());
+        st.setInt(6,user.getId());
         st.executeUpdate();
-        return 1;
+        return 0;
     }
 
     @Override
@@ -59,7 +63,7 @@ public class UserDao implements IUserDao{
             user.setPassword(rs.getString("password"));
             user.setEmail(rs.getString("email"));
             user.setGender(rs.getString("gender"));
-            user.setBirthday(rs.getDate("birthday"));
+            user.setBirthday(String.valueOf(rs.getDate("birthday")));
         }
 
         return user;
@@ -83,7 +87,7 @@ public class UserDao implements IUserDao{
             user.setPassword(rs.getString("password"));
             user.setEmail(rs.getString("email"));
             user.setGender(rs.getString("gender"));
-            user.setBirthday(rs.getDate("birthday"));
+            user.setBirthday(String.valueOf(rs.getDate("birthday")));
         }
 
         return user;
@@ -105,7 +109,7 @@ public class UserDao implements IUserDao{
             user.setPassword(rs.getString("password"));
             user.setEmail(rs.getString("email"));
             user.setGender(rs.getString("gender"));
-            user.setBirthday(rs.getDate("birthday"));
+            user.setBirthday(String.valueOf(rs.getDate("birthday")));
         }
         return (List<User>) user;
     }
@@ -126,7 +130,7 @@ public class UserDao implements IUserDao{
             user.setPassword(rs.getString("password"));
             user.setEmail(rs.getString("email"));
             user.setGender(rs.getString("gender"));
-            user.setBirthday(rs.getDate("birthday"));
+            user.setBirthday(String.valueOf(rs.getDate("birthday")));
         }
 
         return (List<User>) user;
@@ -148,7 +152,7 @@ public class UserDao implements IUserDao{
             user.setPassword(rs.getString("password"));
             user.setEmail(rs.getString("email"));
             user.setGender(rs.getString("gender"));
-            user.setBirthday(rs.getDate("birthday"));
+            user.setBirthday(String.valueOf(rs.getDate("birthday")));
         }
 
         return (List<User>) user;
@@ -170,7 +174,7 @@ public class UserDao implements IUserDao{
             user.setPassword(rs.getString("password"));
             user.setEmail(rs.getString("email"));
             user.setGender(rs.getString("gender"));
-            user.setBirthday(rs.getDate("birthday"));
+            user.setBirthday(String.valueOf(rs.getDate("birthday")));
         }
 
         return (List<User>) user;
@@ -192,7 +196,7 @@ public class UserDao implements IUserDao{
             user.setPassword(rs.getString("password"));
             user.setEmail(rs.getString("email"));
             user.setGender(rs.getString("gender"));
-            user.setBirthday(rs.getDate("birthday"));
+            user.setBirthday(String.valueOf(rs.getDate("birthday")));
         }
 
         return (List<User>) user;
@@ -213,7 +217,7 @@ public class UserDao implements IUserDao{
             user.setPassword(rs.getString("password"));
             user.setEmail(rs.getString("email"));
             user.setGender(rs.getString("gender"));
-            user.setBirthday(rs.getDate("birthday"));
+            user.setBirthday(String.valueOf(rs.getDate("birthday")));
         }
 
         return (List<User>) user;
