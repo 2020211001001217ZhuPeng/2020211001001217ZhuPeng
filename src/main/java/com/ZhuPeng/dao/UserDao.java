@@ -19,7 +19,7 @@ public class UserDao implements IUserDao{
         st.setString(3, user.getPassword());
         st.setString(4, user.getEmail());
         st.setString(5, user.getGender());
-        st.setString(6,user.getBirthday());
+        st.setString(6, user.getBirthday());
         st.executeUpdate();
         return true;
     }
