@@ -24,11 +24,11 @@
 
 
     <!--add code about new servlet-->
-    <servlet>
-        <servlet-name>anyName</servlet-name><!--give any name-->
-        <servlet-class>com.ZhuPeng.week2.demo.HelloWorldServlet</servlet-class><!--package+name of servlet class-->
-    </servlet>
 <!--    <servlet>
+        <servlet-name>anyName</servlet-name>
+        <servlet-class>com.ZhuPeng.week2.demo.HelloWorldServlet</servlet-class>
+    </servlet>-->
+<!--   <servlet>
         <servlet-name>LifeCycleServlet</servlet-name>
         <servlet-class>com.ZhuPeng.week3.demo.LifeCycleServlet</servlet-class>
     </servlet>-->
@@ -69,10 +69,10 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>-->
-    <servlet-mapping>
+<!--    <servlet-mapping>
     <servlet-name>anyName</servlet-name>
-    <url-pattern>/hello</url-pattern><!--url must start with /-->
-    </servlet-mapping>
+    <url-pattern>/hello</url-pattern>
+    </servlet-mapping>-->
 <!--    <servlet-mapping>
         <servlet-name>LifeCycleServlet</servlet-name>
         <url-pattern>/life</url-pattern>
@@ -92,5 +92,30 @@
     <welcome-file-list>
         <welcome-file>home</welcome-file>
     </welcome-file-list>
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>com.ZhuPeng.filter.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>HelloFilter</filter-name>
+        <filter-class>com.ZhuPeng.filter.HelloFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>HelloFilter</filter-name>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>LoggerFilter</filter-name>
+        <filter-class>com.ZhuPeng.filter.LoggerFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoggerFilter</filter-name>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>
+
 
 </web-app>
