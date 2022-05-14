@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Demo 3-week 11</title>
+    <title>Demo 3-week 11+Demo 1-week 12</title>
 </head>
 <body>
 <%
@@ -36,5 +36,26 @@
     <li>${firstname["1"]}-->${lastname["1"]}-->${company[lastname["1"]]}</li>
     <li>${firstname["2"]}-->${lastname["2"]}-->${company.McNealy}</li>
 </ul>
+<hr/>
+<h3>Use JSTL c:forEach to get array elements</h3>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<ul>
+    <c:forEach var="a" items="${firstname}">
+        <li>${a}</li>
+    </c:forEach>
+</ul>
+<h3>Use JSTL c:forEach to get List elements</h3>
+<ul>
+    <c:forEach var="a" items="${lastname}">
+        <li>${a}</li>
+    </c:forEach>
+</ul>
+<h3>Use JSTL c:forEach to get Map elements</h3>
+<ul>
+    <c:forEach var="a" items="${company}">
+        <li>${a.key}-->${a.value}</li>
+    </c:forEach>
+</ul>
+
 </body>
 </html>
