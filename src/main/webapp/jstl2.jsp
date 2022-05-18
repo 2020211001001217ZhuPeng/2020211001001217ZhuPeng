@@ -24,5 +24,56 @@
 <c:set target="${d}" property="name" value="dog1"/>
 <c:set target="${p}" property="dog" value="${d}"/>
 Dog Name:<c:out value="${p.dog.name}"/>
+<hr/>
+<h2>Use c:if</h2>
+<ul>
+    <c:forEach var="i" begin="1" end="10">
+        <li>
+            ${i}
+            <c:if test="${i>7}">
+                (greater than 7)
+            </c:if>
+        </li>
+    </c:forEach>
+</ul>
+<hr/>
+<h2>Use c:choose,c:when,c:otherwise</h2>
+<ul>
+    <c:forEach var="i" begin="1" end="10">
+        <li>
+            ${i}
+            <c:choose>
+                <c:when test="${i<4}">
+                    (Small)
+                </c:when>
+                <c:when test="${i<8}">
+                    (Medium)
+                </c:when>
+                <c:otherwise>
+                    (Large)
+                </c:otherwise>
+            </c:choose>
+        </li>
+    </c:forEach>
+</ul>
+<hr/>
+<h2>Use c:import</h2>
+<%--<c:import url="https://www.baidu.com"/>--%>
+<hr/>
+<h2>Use c:URL</h2>
+<a href="home">Go to home(without c:url</a><br>
+<a href="<c:url value="home"/> ">Go to home(using c:url)</a>
+<c:url var="myUrl" value="home">
+    <c:param name="productId" value="2312"/>
+    <c:param name="username" value="admin"/>
+</c:url>
+<form action="${myUrl}">
+
+</form>
+<br>
+<a href="${myUrl}">Go to home(use c:url with c:param</a>
+<hr/>
+<h2>use:c redirect</h2>
+<c:redirect url="${myUrl}"/>
 </body>
 </html>

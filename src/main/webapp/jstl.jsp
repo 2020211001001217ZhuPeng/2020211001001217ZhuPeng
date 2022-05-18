@@ -39,5 +39,6 @@ Application Att:<c:out value="${applicationScope.foo}"/><br/>
 <%=10/0%>
 </c:catch>
 Message:<c:out value="${myException}"/>
+
 </body>
 </html>
