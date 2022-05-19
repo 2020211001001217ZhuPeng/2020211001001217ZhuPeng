@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>jstl2</title>
+    <title>week13-jstl2</title>
 </head>
 <body>
 <h2>use c:set to set bean property</h2>

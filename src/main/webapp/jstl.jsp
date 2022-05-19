@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>jstl</title>
+    <title>week12-jstl</title>
 </head>
 <body>
 This is my JSP Page.<br/>

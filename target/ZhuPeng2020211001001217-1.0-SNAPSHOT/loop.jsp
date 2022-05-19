@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>loop page-week12</title>
+    <title>loop.page-week12</title>
 </head>
 <body>
 This is loop.JSP page <br>
